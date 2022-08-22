@@ -1,0 +1,24 @@
+#!/bin/sh
+
+extra=$4
+alias=$(echo $3)
+n=1
+filename='machines.list'
+while read line; do
+    
+    f1=$(echo "$line" | cut -d' ' -f1)    
+    if [ "$alias"="$f1" ]; then	    # ESTO ESTÁ FUNCIONANDO MAL Y NO TIENE SENTIDO.
+	echo "\n\n$f1 es igual a $alias\n\n"
+	serv=$(echo "$line" | cut -d' ' -f2)
+    fi
+    
+    f1=''
+done < "$filename"
+
+if [ -d $1 ] ; then
+    extra=$extra' -r'
+fi
+
+echo "scp$extra $r $1 $serv$2"
+
+    
